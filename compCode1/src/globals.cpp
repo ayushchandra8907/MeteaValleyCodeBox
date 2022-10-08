@@ -1,4 +1,5 @@
 #include "globals.h"
+#include "main.h"
 
 //controller
 pros::Controller controller1(pros::E_CONTROLLER_MASTER);

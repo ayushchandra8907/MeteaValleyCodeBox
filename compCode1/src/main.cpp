@@ -87,7 +87,7 @@ void opcontrol() {
 
 		//START==============================================================
 		setDriveMotors(); //takes controller input and drives base		
-		setIntakeMotors(); //takes controller input and intakes discis.
+		//setIntakeMotors(); //takes controller input and intakes discis.
 
 		pros::delay(20);
 	}
