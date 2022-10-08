@@ -2,7 +2,7 @@
 #include "main.h"
 
 //controller
-pros::Controller controller1(pros::E_CONTROLLER_MASTER);
+pros::Controller Controller1(pros::E_CONTROLLER_MASTER);
 
 //motors
 pros::Motor RFM(1, pros::E_MOTOR_GEARSET_18, false);

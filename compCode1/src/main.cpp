@@ -28,10 +28,7 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
-
-	pros::lcd::register_btn1_cb(on_center_button);
+	
 }
 
 /**
@@ -82,12 +79,10 @@ void opcontrol() {
 	
 
 	while (true) {
-		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,(pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
-
+		
 		//START==============================================================
 		setDriveMotors(); //takes controller input and drives base		
-		//setIntakeMotors(); //takes controller input and intakes discis.
+		setIntakeMotors(); //takes controller input and intakes discis.
 
 		pros::delay(20);
 	}
