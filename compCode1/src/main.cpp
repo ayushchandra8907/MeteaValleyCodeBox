@@ -2,6 +2,7 @@
 #include "globals.h"
 
 #include "subsystemHeaders/drive.h"
+#include "subsystemHeaders/intake.h"
 
 
 /**
@@ -86,6 +87,7 @@ void opcontrol() {
 
 		//START==============================================================
 		setDriveMotors(); //takes controller input and drives base		
+		setIntakeMotors(); //takes controller input and intakes discis.
 
 		pros::delay(20);
 	}

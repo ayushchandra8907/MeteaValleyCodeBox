@@ -12,5 +12,6 @@ extern pros::Motor RBM;
 extern pros::Motor LFM;
 extern pros::Motor LBM;
 
+extern pros::Motor intake;
 
 #endif
