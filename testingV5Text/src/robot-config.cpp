@@ -13,6 +13,9 @@ motor RBM = motor(PORT2, ratio18_1, false);
 motor LFM = motor(PORT3, ratio18_1, true);
 motor LBM = motor(PORT4, ratio18_1, true);
 controller Controller1 = controller(primary);
+encoder rightTrack = encoder(Brain.ThreeWirePort.A);
+encoder centTrack = encoder(Brain.ThreeWirePort.C);
+encoder leftTrack = encoder(Brain.ThreeWirePort.E);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
