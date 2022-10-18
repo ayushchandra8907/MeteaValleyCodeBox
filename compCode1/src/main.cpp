@@ -84,6 +84,9 @@ void opcontrol() {
 		setDriveMotors(); //takes controller input and drives base		
 		setIntakeMotors(); //takes controller input and intakes discis.
 
+
+		BUTTON_MACROS(); //runs all button commands from control
+
 		pros::delay(20);
 	}
 }

@@ -1,5 +1,7 @@
 #include "subsystemHeaders/drive.h"
+#include "globals.h"
 #include "main.h"
+#include "pros/misc.h"
 
 //drive functions==============================================================
 void setDriveMotors() {
@@ -10,7 +12,7 @@ void setDriveMotors() {
 }
 
 //auton functions==============================================================
-void translate(double units, double voltage){
+void translateIME(double units, double voltage){
     //get direction
     int dir = fabs(units)/units;
 
@@ -46,8 +48,34 @@ void clearDriveMotors(){
     LBM.tare_position();
 }
 
+void clearTrackingWheels(){
+    rightTrack.reset();
+    centTrack.reset();
+    leftTrack.reset();
+}
+
 double getMotorPosition(){
     double sumPos = RFM.get_position() + RBM.get_position() + LFM.get_position() + LBM.get_position();
 
     return sumPos/4.0;
+    
 }
+
+//Button functions===============================================================
+void BUTTON_MACROS(){
+
+    //resets encoders
+    if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)){
+        clearTrackingWheels();
+    }
+
+
+    //prints encoder values
+    if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
+        pros::lcd::print(0, "Rigt Tracking Wheel: %5.4f", rightTrack.get_value());
+        pros::lcd::print(1, "Cent Tracking Wheel: %5.4f", centTrack.get_value());
+        pros::lcd::print(2, "Left Tracking Wheel: %5.4f", leftTrack.get_value());
+    }
+}
+
+

@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "main.h"
+#include "pros/adi.hpp"
 
 //controller
 pros::Controller Controller1(pros::E_CONTROLLER_MASTER);
@@ -11,3 +12,10 @@ pros::Motor LFM(3, pros::E_MOTOR_GEARSET_18, true);
 pros::Motor LBM(4, pros::E_MOTOR_GEARSET_18, true);
 
 pros::Motor intake(5, pros::E_MOTOR_GEARSET_18, false);
+
+//sensors
+pros::ADIEncoder rightTrack('A', 'B', false);
+pros::ADIEncoder centTrack('C', 'D', false);
+pros::ADIEncoder leftTrack('E', 'F', false);
+
+
