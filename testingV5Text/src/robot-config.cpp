@@ -16,6 +16,8 @@ controller Controller1 = controller(primary);
 encoder rightTrack = encoder(Brain.ThreeWirePort.A);
 encoder centTrack = encoder(Brain.ThreeWirePort.C);
 encoder leftTrack = encoder(Brain.ThreeWirePort.E);
+motor intake = motor(PORT5, ratio18_1, false);
+motor indexer = motor(PORT6, ratio18_1, false);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

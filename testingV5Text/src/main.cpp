@@ -18,12 +18,38 @@
 // rightTrack           encoder       A, B            
 // centTrack            encoder       C, D            
 // leftTrack            encoder       E, F            
+// intake               motor         5               
+// indexer              motor         6               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
 
 using namespace vex;
 
+
+void resetEncoders(){
+  rightTrack.setPosition(0, degrees);
+  centTrack.setPosition(0, degrees);
+  leftTrack.setPosition(0, degrees);
+}
+
+void buttonHold(motor m, bool fwd, bool rev){
+  if(fwd){
+      m.spin(forward, 100, percent);
+  } else if (rev){
+      m.spin(reverse, 100, percent);
+  } else {
+      m.stop(coast);
+  }
+}
+
+void buttonHold(motor m, bool fwd){
+  if(fwd){
+      m.spin(forward, 100, percent);
+  } else {
+      m.stop(coast);
+  }
+}
 
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
@@ -32,6 +58,8 @@ int main() {
   rightTrack.setPosition(0, degrees);
   centTrack.setPosition(0, degrees);
   leftTrack.setPosition(0, degrees);
+
+  Controller1.ButtonUp.pressed(resetEncoders);
   
   //driver control loop
   while(true){
@@ -41,11 +69,18 @@ int main() {
     LFM.spin(vex::forward, Controller1.Axis3.position(), vex::percent);
     LBM.spin(vex::forward, Controller1.Axis3.position(), vex::percent);
 
+    if(Controller1.ButtonDown.pressing()){
+      Brain.Screen.printAt(20, 40, "Right Track %3f", rightTrack.position(degrees));
+      Brain.Screen.printAt(20, 60, "Cent Track %3f", centTrack.position(degrees));
+      Brain.Screen.printAt(20, 80, "Left Track %3f", leftTrack.position(degrees));
+    }
 
-    Brain.Screen.printAt(20, 40, "Right Track %f", rightTrack.position(degrees));
-    Brain.Screen.printAt(20, 60, "Cent Track %f", centTrack.position(degrees));
-    Brain.Screen.printAt(20, 80, "Left Track %f", leftTrack.position(degrees));
+    //buttons--------------
+    //indexer
+    buttonHold(indexer, Controller1.ButtonR2.pressing());
 
+    //intake
+    buttonHold(intake, Controller1.ButtonL2.pressing(), Controller1.ButtonL1.pressing());
 
 
     wait(20, msec);

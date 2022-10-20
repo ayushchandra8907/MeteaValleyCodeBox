@@ -11,6 +11,8 @@ extern controller Controller1;
 extern encoder rightTrack;
 extern encoder centTrack;
 extern encoder leftTrack;
+extern motor intake;
+extern motor indexer;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Text.
