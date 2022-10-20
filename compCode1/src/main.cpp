@@ -3,6 +3,7 @@
 
 #include "subsystemHeaders/drive.h"
 #include "subsystemHeaders/intake.h"
+#include "subsystemHeaders/indexer.h"
 
 
 /**
@@ -83,7 +84,7 @@ void opcontrol() {
 		//START==============================================================
 		setDriveMotors(); //takes controller input and drives base		
 		setIntakeMotors(); //takes controller input and intakes discis.
-
+		indexDiscs(); //takes controller input and indexs discs when R2 is pressed
 
 		BUTTON_MACROS(); //runs all button commands from control
 
