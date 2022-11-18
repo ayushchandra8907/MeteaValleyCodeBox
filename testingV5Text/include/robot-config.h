@@ -13,6 +13,10 @@ extern encoder centTrack;
 extern encoder leftTrack;
 extern motor intake;
 extern motor indexer;
+extern motor fly1;
+extern motor fly2;
+extern motor endgame;
+extern inertial inert1;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Text.

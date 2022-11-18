@@ -20,36 +20,65 @@
 // leftTrack            encoder       E, F            
 // intake               motor         5               
 // indexer              motor         6               
+// fly1                 motor         7               
+// fly2                 motor         8               
+// endgame              motor         9               
+// inert1               inertial      20              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
+#include "autonHelpers.h"
 
 using namespace vex;
 
 
+//sensors
 void resetEncoders(){
   rightTrack.setPosition(0, degrees);
   centTrack.setPosition(0, degrees);
   leftTrack.setPosition(0, degrees);
 }
 
-void buttonHold(motor m, bool fwd, bool rev){
+
+//helper functions
+void buttonHold(motor m, bool fwd, bool rev, int pow){
   if(fwd){
-      m.spin(forward, 100, percent);
+      m.spin(forward, pow, percent);
   } else if (rev){
-      m.spin(reverse, 100, percent);
+      m.spin(reverse, pow, percent);
   } else {
       m.stop(coast);
   }
 }
 
-void buttonHold(motor m, bool fwd){
+void buttonHold(motor m, bool fwd, int pow){
   if(fwd){
-      m.spin(forward, 100, percent);
+      m.spin(forward, pow, percent);
   } else {
       m.stop(coast);
   }
 }
+
+void buttonHoldVolt(motor m, bool fwd, int pow){
+  if(fwd){
+      m.spin(forward, pow, volt);
+  } else {
+      m.stop(coast);
+  }
+}
+
+//variables and others
+double flyPow = 12;
+void flySpeed1(){flyPow = 12;}
+void flySpeed2(){flyPow = 9;}
+void flySpeed3(){flyPow = 6;}
+void flySpeed4(){flyPow = 3;}
+
+
+void autonomous(){
+  //put functions here
+}
+
 
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
@@ -59,7 +88,16 @@ int main() {
   centTrack.setPosition(0, degrees);
   leftTrack.setPosition(0, degrees);
 
-  Controller1.ButtonUp.pressed(resetEncoders);
+  inert1.calibrate();
+  inert1.setHeading(0, degrees);
+
+  Controller1.ButtonA.pressed(resetEncoders);
+
+  //flywheel settings
+  Controller1.ButtonUp.pressed(flySpeed1);
+  Controller1.ButtonRight.pressed(flySpeed2);
+  Controller1.ButtonDown.pressed(flySpeed3);
+  Controller1.ButtonLeft.pressed(flySpeed4);
   
   //driver control loop
   while(true){
@@ -69,7 +107,7 @@ int main() {
     LFM.spin(vex::forward, Controller1.Axis3.position(), vex::percent);
     LBM.spin(vex::forward, Controller1.Axis3.position(), vex::percent);
 
-    if(Controller1.ButtonDown.pressing()){
+    if(Controller1.ButtonX.pressing()){
       Brain.Screen.printAt(20, 40, "Right Track %3f", rightTrack.position(degrees));
       Brain.Screen.printAt(20, 60, "Cent Track %3f", centTrack.position(degrees));
       Brain.Screen.printAt(20, 80, "Left Track %3f", leftTrack.position(degrees));
@@ -77,10 +115,17 @@ int main() {
 
     //buttons--------------
     //indexer
-    buttonHold(indexer, Controller1.ButtonR2.pressing());
+    buttonHold(indexer, Controller1.ButtonR2.pressing(), 75);
 
     //intake
-    buttonHold(intake, Controller1.ButtonL2.pressing(), Controller1.ButtonL1.pressing());
+    buttonHold(intake, Controller1.ButtonL2.pressing(), Controller1.ButtonL1.pressing(), 75);
+
+    //flywheel
+    buttonHoldVolt(fly1, Controller1.ButtonR1.pressing(), flyPow);
+    buttonHoldVolt(fly1, Controller1.ButtonR1.pressing(), flyPow);
+
+    //endgame
+    buttonHold(endgame, Controller1.ButtonY.pressing(), Controller1.ButtonB.pressing(), 100);
 
 
     wait(20, msec);

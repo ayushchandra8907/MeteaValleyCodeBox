@@ -18,6 +18,10 @@ encoder centTrack = encoder(Brain.ThreeWirePort.C);
 encoder leftTrack = encoder(Brain.ThreeWirePort.E);
 motor intake = motor(PORT5, ratio18_1, false);
 motor indexer = motor(PORT6, ratio18_1, false);
+motor fly1 = motor(PORT7, ratio6_1, false);
+motor fly2 = motor(PORT8, ratio6_1, true);
+motor endgame = motor(PORT9, ratio18_1, false);
+inertial inert1 = inertial(PORT20);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
