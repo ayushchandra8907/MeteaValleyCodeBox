@@ -10,10 +10,10 @@ void setDrive(double left, double right);
 
 //tracking wheels
 void clearTrackingWheels();
-void getPos();
+double getTrackPos(vex::rotationUnits u);
 
 //move forward and backwards
-void translate(double turns, double voltage);
+void translate(double d, vex::rotationUnits units, double voltage);
 
 //turn left or right
 void rotate(double deg, double voltage);
