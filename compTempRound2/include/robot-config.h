@@ -16,9 +16,10 @@ extern motor indexer;
 extern motor fly1;
 extern motor endgame;
 extern inertial inert1;
+extern distance distSense;
 
 /**
- * Used to initialize code/tasks/devices added using tools in VEXcode Text.
+ * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
  * This should be called at the start of your int main function.
  */

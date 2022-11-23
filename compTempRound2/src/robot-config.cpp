@@ -21,13 +21,14 @@ motor indexer = motor(PORT14, ratio36_1, true);
 motor fly1 = motor(PORT19, ratio6_1, false);
 motor endgame = motor(PORT9, ratio6_1, false);
 inertial inert1 = inertial(PORT11);
+distance distSense = distance(PORT6);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 bool RemoteControlCodeEnabled = true;
 
 /**
- * Used to initialize code/tasks/devices added using tools in VEXcode Text.
+ * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
  * This should be called at the start of your int main function.
  */

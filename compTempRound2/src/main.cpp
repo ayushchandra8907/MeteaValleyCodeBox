@@ -23,6 +23,7 @@
 // fly1                 motor         19              
 // endgame              motor         9               
 // inert1               inertial      11              
+// distSense            distance      6               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
