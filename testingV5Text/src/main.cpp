@@ -139,7 +139,7 @@ int main() {
     }
 
     //intake
-    buttonHold(intake, Controller1.ButtonL2.pressing(), Controller1.ButtonL1.pressing(), 75, coast);
+    buttonHold(intake, Controller1.ButtonL2.pressing(), Controller1.ButtonL1.pressing(), 100, coast);
 
     //flywheel
     buttonHoldVolt(fly1, Controller1.ButtonR1.pressing(), flyPow);
