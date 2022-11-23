@@ -22,6 +22,7 @@ motor fly1 = motor(PORT19, ratio6_1, false);
 motor endgame = motor(PORT9, ratio18_1, false);
 inertial inert1 = inertial(PORT11);
 distance distSense = distance(PORT6);
+bumper autonSwitch = bumper(Brain.ThreeWirePort.G);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

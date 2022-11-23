@@ -23,30 +23,6 @@ double getTrackPos(vex::rotationUnits u){
 }
 
 
-//move forward and backwards
-void translate(double d, vex::rotationUnits units, double speed){
-    //get direction
-    int dir = fabs(d)/d;
-
-    //reset encoders
-    clearTrackingWheels();
-
-    //go forward
-    while(fabs(rightTrack.position(units)) < fabs(d)){
-        RFM.spin(forward, dir*speed, volt);
-        LFM.spin(forward, dir*speed, volt);
-        RBM.spin(forward, dir*speed, volt);
-        LBM.spin(forward, dir*speed, volt);
-        
-        wait(20, msec);
-    }
-
-    //end
-    //setDrive(dir * -10, dir * -10);
-    wait(20, msec);
-
-    //setDrive(0, 0);
-}
 
 //autonomous translate
 

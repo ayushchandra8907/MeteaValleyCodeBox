@@ -17,6 +17,7 @@ extern motor fly1;
 extern motor endgame;
 extern inertial inert1;
 extern distance distSense;
+extern bumper autonSwitch;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
