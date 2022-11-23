@@ -114,18 +114,9 @@ void autonomous(void) {
   //     break;
   // }
 
-  pid drivePID(0.45, 0, 0.3);
+  pidTranslate(360);
 
-  
 
-  while(true){
-    float moveBy = drivePID.runPID(360*4, rightTrack.position(degrees));
-
-    RFM.spin(forward, moveBy, volt);
-    RBM.spin(forward, moveBy, volt);
-    LFM.spin(forward, moveBy, volt);
-    LBM.spin(forward, moveBy, volt);
-  }
   
 }
 
