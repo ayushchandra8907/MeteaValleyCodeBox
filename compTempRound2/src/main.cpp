@@ -21,6 +21,7 @@
 #include "helpers.h"
 #include "autonHelpers.h"
 #include "autonRoutines.h"
+#include "pid.h"
 
 using namespace vex;
 
@@ -99,18 +100,31 @@ void autonomous(void) {
   // ..........................................................................
 
   
-  switch(currentAut) {
-    case 0:
-      autonRoute0();
-      break;
+  // switch(currentAut) {
+  //   case 0:
+  //     autonRoute0();
+  //     break;
 
-    case 1:
-      autonRoute1();
-      break;
+  //   case 1:
+  //     autonRoute1();
+  //     break;
 
-    case 2:
-      autonRoute2();
-      break;
+  //   case 2:
+  //     autonRoute2();
+  //     break;
+  // }
+
+  pid drivePID(0.45, 0, 0.3);
+
+  
+
+  while(true){
+    float moveBy = drivePID.runPID(360*4, rightTrack.position(degrees));
+
+    RFM.spin(forward, moveBy, volt);
+    RBM.spin(forward, moveBy, volt);
+    LFM.spin(forward, moveBy, volt);
+    LBM.spin(forward, moveBy, volt);
   }
   
 }
