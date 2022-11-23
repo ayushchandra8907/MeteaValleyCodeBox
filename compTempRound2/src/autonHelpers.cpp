@@ -46,24 +46,17 @@ void autTranslate(double d, vex::rotationUnits units, double speed){
 }
 
 //turn left or right
-void rotate(double deg, double speed){
-    //get direction
-    int dir = fabs(deg)/deg;
+void autRotate(double deg, double speed){
+  
+  while(inert1.rotation(degrees) < deg){
+    RFM.spin(forward, speed, percent);
+    RBM.spin(forward, speed, percent);
+    LFM.spin(reverse, speed, percent);
+    LBM.spin(reverse, speed, percent);
+  }
 
-    //reset encoders
-    inert1.setHeading(0, degrees);
 
-    //go forward
-    while(fabs(inert1.heading(degrees)) < fabs(deg)){
-        RFM.spin(forward, dir*speed, volt);
-        LFM.spin(reverse, dir*speed, volt);
-        RBM.spin(forward, dir*speed, volt);
-        LBM.spin(reverse, dir*speed, volt);
-    }
-
-    //end
-   // setDrive(dir * 10, dir * -10);
-    wait(20, msec);    
+  wait(20, msec);    
 }
 
 
