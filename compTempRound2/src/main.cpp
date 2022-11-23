@@ -20,6 +20,7 @@
 #include "vex.h"
 #include "helpers.h"
 #include "autonHelpers.h"
+#include "autonRoutines.h"
 
 using namespace vex;
 
@@ -28,6 +29,7 @@ competition Competition;
 
 // define your global instances of motors and other devices here
 
+//drive -----
 double rPow;
 double lPow;
 double fwdD = 1;
@@ -36,11 +38,22 @@ void switchDir(){
   fwdD *= -1;
 }
 
+//flywheel -----
 double flyPow = 12;
 void flySpeed1(){flyPow = 11;}
 void flySpeed2(){flyPow = 10;}
 void flySpeed3(){flyPow = 8;}
 void flySpeed4(){flyPow = 7;}
+
+
+//auton -----
+int currentAut = 0;
+void switchAut(){
+  currentAut++;
+  if(currentAut == 2){
+    currentAut = 0;
+  }
+}
 
 
 
@@ -66,6 +79,8 @@ void pre_auton(void) {
   rightTrack.setPosition(0, degrees);
   leftTrack.setPosition(0, degrees);
   centTrack.setPosition(0, degrees);
+
+  autonSwitch.pressed(switchAut);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -83,27 +98,20 @@ void autonomous(void) {
   // Insert autonomous user code here.
   // ..........................................................................
 
-  autTranslate(-1, turns, 50);
-  intake.spinFor(forward, 3, turns);
   
+  switch(currentAut) {
+    case 0:
+      autonRoute0();
+      break;
 
+    case 1:
+      autonRoute1();
+      break;
 
-
-  
-
-  // autTranslate(2, turns, 50);
-
-  // RFM.spinFor(forward, 0.7, turns, false);
-  // RBM.spinFor(forward, 0.7, turns, false);
-  // LFM.spinFor(reverse, 0.7, turns, false);
-  // LBM.spinFor(reverse, 0.7, turns);
-
-  // autTranslate(-1.2, turns, 50);
-
-  // intake.spinFor(forward, 0.25, turns);
-
-  // RFM.spinFor(forward, 0.7, turns, false);
-  // RBM.spinFor(forward, 0.7, turns);
+    case 2:
+      autonRoute2();
+      break;
+  }
   
 }
 
@@ -126,7 +134,6 @@ void usercontrol(void) {
   inert1.setHeading(0, degrees);
 
   Controller1.ButtonA.pressed(clearTrackingWheels);
-  Controller1.ButtonLeft.pressed(switchDir);
 
   //flywheel settings
   Controller1.ButtonUp.pressed(flySpeed1);
@@ -153,18 +160,18 @@ void usercontrol(void) {
     LBM.spin(vex::forward, lPow, vex::percent);
 
 
-    //encoders
-    if(Controller1.ButtonX.pressing()){
-      // Brain.Screen.printAt(20, 40, "Right Track %3f", rightTrack.position(degrees));
-      // Brain.Screen.printAt(20, 60, "Cent Track %3f", centTrack.position(degrees));
-      // Brain.Screen.printAt(20, 80, "Left Track %3f", leftTrack.position(degrees));
+    //DEBUGGING-----------------------------------
+      if(Controller1.ButtonX.pressing()){
+        // Brain.Screen.printAt(20, 40, "Right Track %3f", rightTrack.position(degrees));
+        // Brain.Screen.printAt(20, 60, "Cent Track %3f", centTrack.position(degrees));
+        // Brain.Screen.printAt(20, 80, "Left Track %3f", leftTrack.position(degrees));
 
-      Brain.Screen.printAt(20, 40, "Disance %3f", distSense.objectDistance(inches));
-    } else {
-      Brain.Screen.clearScreen();
-    }
+        //Brain.Screen.printAt(20, 40, "Disance %3f", distSense.objectDistance(inches));
+      } else {
+        Brain.Screen.clearScreen();
+      }
 
-    //buttons--------------
+    //buttons-----------------------------------
     //indexer
 
     if(Controller1.ButtonR2.pressing()){
@@ -182,8 +189,7 @@ void usercontrol(void) {
     //endgame
     buttonHold(endgame, Controller1.ButtonY.pressing(), Controller1.ButtonB.pressing(), 20, hold);
 
-    wait(20, msec); // Sleep the task for a short amount of time to
-                    // prevent wasted resources.
+    wait(20, msec); 
   }
 }
 
