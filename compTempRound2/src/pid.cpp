@@ -1,9 +1,9 @@
 #include "pid.h"
 
 
-double kP = 1;
-double kI = 0;
-double kD = 0;
+double kP = 0.6;
+double kI = 0.5;
+double kD = 0.2;
 
 
 //helper
@@ -11,7 +11,7 @@ double getPIDpos(){
   double r = rightTrack.position(degrees);
   double l = leftTrack.position(degrees);
 
-  return r/2.0;
+  return r/1.0;
 }
 
 void powerMotors(double p){
@@ -24,18 +24,43 @@ void powerMotors(double p){
 //methods
 void pidTranslate(double target){
   double error = target - getPIDpos();
-  double motPow = error*kP;
+  double integral = 0;
+  double derivative = 0;
+  double prevError = error;
+
+  double motPow = 0;
 
 
   while(true){
+
+    //p for porn
     error = target - getPIDpos();
-    motPow = error*kP;
 
+
+    //i for intercourse
+    if (error <= 0)
+      integral = 0;
+    integral += error;
+
+    //d for dick
+    derivative = error-prevError;
+    prevError = error;
+
+
+
+    motPow = error*kP + integral*kI + error*kD;
+
+
+
+
+    Brain.Screen.printAt(20, 40, "Right Track %3f", rightTrack.position(degrees));
+    
     powerMotors(motPow);
-  }
 
+    wait(20, msec);
+  } 
+}
 
-
-
+void pidTurn(double deg){
   
 }

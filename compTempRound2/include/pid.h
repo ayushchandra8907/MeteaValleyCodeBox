@@ -13,6 +13,6 @@ void powerMotors(double p);
 
 //methods
 void pidTranslate(double target);
-
+void pidTurn(double deg);
 
 #endif

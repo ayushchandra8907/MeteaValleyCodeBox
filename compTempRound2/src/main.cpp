@@ -99,21 +99,23 @@ void autonomous(void) {
   // Insert autonomous user code here.
   // ..........................................................................
 
-  
   // switch(currentAut) {
   //   case 0:
   //     autonRoute0();
+  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
   //     break;
 
   //   case 1:
   //     autonRoute1();
+  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
   //     break;
 
   //   case 2:
   //     autonRoute2();
+  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
   //     break;
   // }
-
+  
   pidTranslate(360);
 
 
@@ -171,7 +173,7 @@ void usercontrol(void) {
         // Brain.Screen.printAt(20, 60, "Cent Track %3f", centTrack.position(degrees));
         // Brain.Screen.printAt(20, 80, "Left Track %3f", leftTrack.position(degrees));
 
-        //Brain.Screen.printAt(20, 40, "Disance %3f", distSense.objectDistance(inches));
+        //Brain.Screen.printAt(20, 40, "Disance %3f", currentAut);
       } else {
         Brain.Screen.clearScreen();
       }
