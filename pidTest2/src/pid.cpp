@@ -1,9 +1,9 @@
 #include "pid.h"
 
 
-double kP = 0.6;
-double kI = 0.5;
-double kD = 0.2;
+double kP = 0.08;
+double kI = 0;
+double kD = 0;
 
 
 //helper
