@@ -1,10 +1,16 @@
 #include "pid.h"
 
 
-double kP = 0.08;
+double kP = 0.001;
 double kI = 0;
 double kD = 0;
 
+//kU = 0.077
+//pU = 1.8015357354
+
+//kP = 0.0462
+//kI = 0.0512895738
+//kD = 0.0104038689
 
 //helper
 double getPIDpos(){
@@ -38,8 +44,12 @@ void pidTranslate(double target){
 
 
     //i for intercourse
-    if (error <= 0)
+    if (error <= 0){
       integral = 0;
+    }
+    if (integral >= target){
+      integral = 0;
+    }
     integral += error;
 
     //d for dick
