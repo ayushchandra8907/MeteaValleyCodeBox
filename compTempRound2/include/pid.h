@@ -10,9 +10,11 @@
 //helper
 double getPIDpos();
 void powerMotors(double p);
+void turnMotors(double p);
+void stopMotors();
 
 //methods
 void pidTranslate(double target);
-void pidTurn(double deg);
+void pdTurn(double deg);
 
 #endif

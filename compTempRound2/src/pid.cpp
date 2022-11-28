@@ -21,7 +21,22 @@ void powerMotors(double p){
   LBM.spin(forward, p, volt);
 }
 
-//methods
+void turnMotors(double p){
+  RFM.spin(forward, p, volt);
+  RBM.spin(forward, p, volt);
+  LFM.spin(reverse, p, volt);
+  LBM.spin(reverse, p, volt);
+}
+
+void stopMotors(){
+  RFM.stop();
+  RBM.stop();
+  LFM.stop();
+  LBM.stop();
+}
+
+
+//methods========================================================================
 void pidTranslate(double target){
   double error = target - getPIDpos();
   double integral = 0;
@@ -47,12 +62,7 @@ void pidTranslate(double target){
     prevError = error;
 
 
-
     motPow = error*kP + integral*kI + error*kD;
-
-
-
-
     Brain.Screen.printAt(20, 40, "Right Track %3f", rightTrack.position(degrees));
     
     powerMotors(motPow);
@@ -61,6 +71,26 @@ void pidTranslate(double target){
   } 
 }
 
-void pidTurn(double deg){
+void pdTurn(double degrees) //PD loop turn code (better than the smartdrive and P loop methods once kP and kD are tuned properly)
+{
+  int dt = 20;  // Recommended wait time in milliseconds
+  double target = degrees; // In revolutions
+  double error = target - Inertial.rotation();
+  double tP = .7;
+  double tD = .1;
+  double prevError = error;
+  while (abs(error) > 1) // Allows +- 1 degree variance, don't reduce unless you know what you are doing
+  {
+    error = target - Inertial.rotation();
+    double derivative = (error - prevError)/dt;
+    double percent = tP * error + tD * derivative;
+
+    turnMotors(percent);
+
+    vex::task::sleep(dt);
+    prevError = error;
+  }
   
+  stopMotors();
+
 }

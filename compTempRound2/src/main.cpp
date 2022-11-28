@@ -11,9 +11,47 @@
 // leftTrack            encoder       A, B            
 // intake               motor         20              
 // indexer              motor         14              
+// fly1                 motor         8               
+// fly2                 motor         9               
+// Inertial             inertial      11              
+// distSense            distance      6               
+// autonSwitch          bumper        G               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RFM                  motor         16              
+// RBM                  motor         13              
+// LFM                  motor         3               
+// LBM                  motor         10              
+// rightTrack           encoder       E, F            
+// centTrack            encoder       C, D            
+// leftTrack            encoder       A, B            
+// intake               motor         20              
+// indexer              motor         14              
+// fly1                 motor         19              
+// fly2                 motor         9               
+// Inertial             inertial      11              
+// distSense            distance      6               
+// autonSwitch          bumper        G               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RFM                  motor         16              
+// RBM                  motor         13              
+// LFM                  motor         3               
+// LBM                  motor         10              
+// rightTrack           encoder       E, F            
+// centTrack            encoder       C, D            
+// leftTrack            encoder       A, B            
+// intake               motor         20              
+// indexer              motor         14              
 // fly1                 motor         19              
 // endgame              motor         9               
-// inert1               inertial      11              
+// Inertial             inertial      11              
 // distSense            distance      6               
 // autonSwitch          bumper        G               
 // ---- END VEXCODE CONFIGURED DEVICES ----
@@ -36,138 +74,7 @@
 // distSense            distance      6               
 // autonSwitch          bumper        G               
 // ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// inert1               inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// inert1               inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// inert1               inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// inert1               inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// inert1               inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// inert1               inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// inert1               inertial      11              
-// distSense            distance      6               
-// ---- END VEXCODE CONFIGURED DEVICES ----
+
 
 #include "vex.h"
 #include "helpers.h"
@@ -193,7 +100,7 @@ void switchDir(){
 
 //flywheel -----
 double flyPow = 12;
-void flySpeed1(){flyPow = 11;}
+void flySpeed1(){flyPow = 12;}
 void flySpeed2(){flyPow = 10;}
 void flySpeed3(){flyPow = 8;}
 void flySpeed4(){flyPow = 7;}
@@ -227,7 +134,7 @@ void pre_auton(void) {
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
   
-  inert1.calibrate();
+  Inertial.calibrate();
 
   rightTrack.setPosition(0, degrees);
   leftTrack.setPosition(0, degrees);
@@ -269,6 +176,7 @@ void autonomous(void) {
   // }
   
   pidTranslate(360);
+  pdTurn(90);
 
 
   
@@ -290,7 +198,7 @@ void usercontrol(void) {
   centTrack.setPosition(0, degrees);
   leftTrack.setPosition(0, degrees);
 
-  inert1.setHeading(0, degrees);
+  //Inertial.setHeading(0, degrees);
 
   Controller1.ButtonA.pressed(clearTrackingWheels);
 
@@ -344,9 +252,10 @@ void usercontrol(void) {
 
     //flywheel
     buttonHoldVolt(fly1, Controller1.ButtonL2.pressing(), flyPow);
+    buttonHoldVolt(fly2, Controller1.ButtonL2.pressing(), flyPow);
 
     //endgame
-    buttonHold(endgame, Controller1.ButtonY.pressing(), Controller1.ButtonB.pressing(), 20, hold);
+
 
     wait(20, msec); 
   }

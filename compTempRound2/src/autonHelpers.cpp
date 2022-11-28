@@ -45,18 +45,5 @@ void autTranslate(double d, vex::rotationUnits units, double speed){
   LBM.setVelocity(100, percent);
 }
 
-//turn left or right
-void autRotate(double deg, double speed){
-  
-  while(inert1.rotation(degrees) < deg){
-    RFM.spin(forward, speed, percent);
-    RBM.spin(forward, speed, percent);
-    LFM.spin(reverse, speed, percent);
-    LBM.spin(reverse, speed, percent);
-  }
-
-
-  wait(20, msec);    
-}
 
 

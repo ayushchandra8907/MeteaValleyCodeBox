@@ -18,9 +18,9 @@ encoder centTrack = encoder(Brain.ThreeWirePort.C);
 encoder leftTrack = encoder(Brain.ThreeWirePort.A);
 motor intake = motor(PORT20, ratio18_1, true);
 motor indexer = motor(PORT14, ratio36_1, true);
-motor fly1 = motor(PORT19, ratio6_1, false);
-motor endgame = motor(PORT9, ratio18_1, false);
-inertial inert1 = inertial(PORT11);
+motor fly1 = motor(PORT8, ratio6_1, false);
+motor fly2 = motor(PORT9, ratio6_1, true);
+inertial Inertial = inertial(PORT11);
 distance distSense = distance(PORT6);
 bumper autonSwitch = bumper(Brain.ThreeWirePort.G);
 

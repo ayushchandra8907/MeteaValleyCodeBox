@@ -6,6 +6,7 @@ extern brain Brain;
 extern controller Controller1;
 extern motor fly1;
 extern motor fly2;
+extern distance distSense;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

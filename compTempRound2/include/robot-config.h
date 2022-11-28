@@ -14,8 +14,8 @@ extern encoder leftTrack;
 extern motor intake;
 extern motor indexer;
 extern motor fly1;
-extern motor endgame;
-extern inertial inert1;
+extern motor fly2;
+extern inertial Inertial;
 extern distance distSense;
 extern bumper autonSwitch;
 
