@@ -17,63 +17,7 @@
 // distSense            distance      6               
 // autonSwitch          bumper        G               
 // ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// fly2                 motor         9               
-// Inertial             inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// Inertial             inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         19              
-// endgame              motor         9               
-// inert1               inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
+
 
 
 #include "vex.h"
@@ -101,8 +45,8 @@ void switchDir(){
 //flywheel -----
 double flyPow = 12;
 void flySpeed1(){flyPow = 12;}
-void flySpeed2(){flyPow = 10;}
-void flySpeed3(){flyPow = 8;}
+void flySpeed2(){flyPow = 9.25;}
+void flySpeed3(){flyPow = 8.8;}
 void flySpeed4(){flyPow = 7;}
 
 
@@ -175,8 +119,12 @@ void autonomous(void) {
   //     break;
   // }
   
-  pidTranslate(360);
+  
   pdTurn(90);
+
+  pidTranslate(360);
+
+  pdTurn(0);
 
 
   
@@ -233,7 +181,7 @@ void usercontrol(void) {
         // Brain.Screen.printAt(20, 60, "Cent Track %3f", centTrack.position(degrees));
         // Brain.Screen.printAt(20, 80, "Left Track %3f", leftTrack.position(degrees));
 
-        //Brain.Screen.printAt(20, 40, "Disance %3f", currentAut);
+        Brain.Screen.printAt(20, 40, "Inertial %3f", Inertial.rotation());
       } else {
         Brain.Screen.clearScreen();
       }
