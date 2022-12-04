@@ -25,6 +25,7 @@
 #include "autonHelpers.h"
 #include "autonRoutines.h"
 #include "pid.h"
+#include "macros.h"
 
 using namespace vex;
 
@@ -43,11 +44,11 @@ void switchDir(){
 }
 
 //flywheel -----
-double flyPow = 12;
-void flySpeed1(){flyPow = 12;}
-void flySpeed2(){flyPow = 9.25;}
-void flySpeed3(){flyPow = 8.8;}
-void flySpeed4(){flyPow = 7;}
+// double flyPow = 12;
+// void flySpeed1(){flyPow = 12;}
+// void flySpeed2(){flyPow = 9.25;}
+// void flySpeed3(){flyPow = 8.8;}
+// void flySpeed4(){flyPow = 7;}
 
 
 //auton -----
@@ -151,10 +152,9 @@ void usercontrol(void) {
   Controller1.ButtonA.pressed(clearTrackingWheels);
 
   //flywheel settings
-  Controller1.ButtonUp.pressed(flySpeed1);
-  Controller1.ButtonRight.pressed(flySpeed2);
-  Controller1.ButtonDown.pressed(flySpeed3);
-  Controller1.ButtonLeft.pressed(flySpeed4);
+  Controller1.ButtonUp.pressed(flyPowIncrease);
+  Controller1.ButtonDown.pressed(flyPowDecrease);
+
 
   while (1) {
     //driver control - tank drive
@@ -185,6 +185,9 @@ void usercontrol(void) {
       } else {
         Brain.Screen.clearScreen();
       }
+
+      Controller1.Screen.setCursor(1, 1);
+      Controller1.Screen.print("flypow = %f", flyPow);
 
     //buttons-----------------------------------
     //indexer
