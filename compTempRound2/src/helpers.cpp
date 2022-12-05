@@ -1,4 +1,18 @@
 #include "helpers.h"
+#include "pid.h"
+
+//drive
+double rPow;
+double lPow;
+int fwdD= 1;
+
+void switchDir(){
+  fwdD *= -1;
+}
+
+void autoAim(){
+  pdTurn(-45);
+}
 
 
 //helper functions

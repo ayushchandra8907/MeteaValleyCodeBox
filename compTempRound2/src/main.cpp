@@ -34,33 +34,6 @@ competition Competition;
 
 // define your global instances of motors and other devices here
 
-//drive -----
-double rPow;
-double lPow;
-double fwdD = 1;
-
-void switchDir(){
-  fwdD *= -1;
-}
-
-//flywheel -----
-// double flyPow = 12;
-// void flySpeed1(){flyPow = 12;}
-// void flySpeed2(){flyPow = 9.25;}
-// void flySpeed3(){flyPow = 8.8;}
-// void flySpeed4(){flyPow = 7;}
-
-
-//auton -----
-int currentAut = 0;
-void switchAut(){
-  currentAut++;
-  if(currentAut == 2){
-    currentAut = 0;
-  }
-}
-
-
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -99,10 +72,6 @@ void pre_auton(void) {
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  // ..........................................................................
-  // Insert autonomous user code here.
-  // ..........................................................................
-
   // switch(currentAut) {
   //   case 0:
   //     autonRoute0();
@@ -147,7 +116,6 @@ void usercontrol(void) {
   centTrack.setPosition(0, degrees);
   leftTrack.setPosition(0, degrees);
 
-  //Inertial.setHeading(0, degrees);
 
   Controller1.ButtonA.pressed(clearTrackingWheels);
 
@@ -155,24 +123,26 @@ void usercontrol(void) {
   Controller1.ButtonUp.pressed(flyPowIncrease);
   Controller1.ButtonDown.pressed(flyPowDecrease);
 
+  //drive
+  Controller1.ButtonLeft.pressed(switchDir);
+  Controller1.ButtonRight.pressed(autoAim);
+
+
 
   while (1) {
-    //driver control - tank drive
+    //driver control - tank drive============================================
     
-    // rPow = fwdD*(RFM.velocity(percent) + (Controller1.Axis2.position() - RFM.velocity(percent))*0.3);
-    // lPow = fwdD*(LFM.velocity(percent) + (Controller1.Axis3.position() - LFM.velocity(percent))*0.3);
+    rPow = fwdD*(RFM.velocity(percent) + (Controller1.Axis2.position() - RFM.velocity(percent))*0.3);
+    lPow = fwdD*(LFM.velocity(percent) + (Controller1.Axis3.position() - LFM.velocity(percent))*0.3);
 
-    // if(fabs(rPow) <= 10){rPow = 0;}
-    // if(fabs(lPow) <= 10){lPow = 0;}
-
-    rPow = (pow(Controller1.Axis2.position(), 3))*(pow(0.01, 2));
-    lPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2));
+    if(fabs(rPow) <= 4){rPow = 0;}
+    if(fabs(lPow) <= 4){lPow = 0;}
 
 
-    RFM.spin(vex::forward, rPow, vex::percent);
-    RBM.spin(vex::forward, rPow, vex::percent);
-    LFM.spin(vex::forward, lPow, vex::percent);
-    LBM.spin(vex::forward, lPow, vex::percent);
+    RFM.spin(vex::forward, fwdD*rPow, vex::percent);
+    RBM.spin(vex::forward, fwdD*rPow, vex::percent);
+    LFM.spin(vex::forward, fwdD*lPow, vex::percent);
+    LBM.spin(vex::forward, fwdD*lPow, vex::percent);
 
 
     //DEBUGGING-----------------------------------

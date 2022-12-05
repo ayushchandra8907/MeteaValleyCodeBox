@@ -1,5 +1,14 @@
 #include "autonRoutines.h"
 
+
+int currentAut = 0;
+void switchAut(){
+  currentAut++;
+  if(currentAut == 2){
+    currentAut = 0;
+  }
+}
+
 //ROUTINES===========================================
 
 

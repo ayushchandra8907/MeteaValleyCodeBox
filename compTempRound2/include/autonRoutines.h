@@ -5,6 +5,11 @@
 #include "robot-config.h"
 #include "autonHelpers.h"
 
+//selector===========================================
+extern int currentAut;
+void switchAut();
+
+
 //ROUTINES===========================================
 
 
