@@ -13,7 +13,7 @@ motor RFM = motor(PORT16, ratio18_1, false);
 motor RBM = motor(PORT13, ratio18_1, false);
 motor LFM = motor(PORT3, ratio18_1, true);
 motor LBM = motor(PORT10, ratio18_1, true);
-encoder rightTrack = encoder(Brain.ThreeWirePort.E);
+encoder rightTrack = encoder(Brain.ThreeWirePort.G);
 encoder centTrack = encoder(Brain.ThreeWirePort.C);
 encoder leftTrack = encoder(Brain.ThreeWirePort.A);
 motor intake = motor(PORT20, ratio18_1, true);
@@ -22,7 +22,7 @@ motor fly1 = motor(PORT8, ratio6_1, false);
 motor fly2 = motor(PORT9, ratio6_1, true);
 inertial Inertial = inertial(PORT11);
 distance distSense = distance(PORT6);
-bumper autonSwitch = bumper(Brain.ThreeWirePort.G);
+digital_out piston1 = digital_out(Brain.ThreeWirePort.E);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
