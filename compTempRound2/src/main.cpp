@@ -91,15 +91,15 @@ void autonomous(void) {
   // }
   
   
-  
+  intake.setVelocity(75, percent);
 
+  autTranslate(100, degrees, 20);
+  intake.spinFor(50, degrees);
+
+  // autTranslate(100, degrees, 50);
+  // pdTurn(-90);
   // autTranslate(-30, degrees, 20);
   // intake.spinFor(50, degrees);
-
-  autTranslate(100, degrees, 50);
-  pdTurn(-90);
-  autTranslate(-30, degrees, 20);
-  intake.spinFor(50, degrees);
 
 
   
@@ -136,11 +136,10 @@ void usercontrol(void) {
   while (1) {
     //driver control - tank drive============================================
     
-    rPow = fwdD*(RFM.velocity(percent) + (Controller1.Axis2.position() - RFM.velocity(percent))*0.3);
-    lPow = fwdD*(LFM.velocity(percent) + (Controller1.Axis3.position() - LFM.velocity(percent))*0.3);
+    rPow = Controller1.Axis2.position();
+    lPow = Controller1.Axis3.position();
 
-    if(fabs(rPow) <= 4){rPow = 0;}
-    if(fabs(lPow) <= 4){lPow = 0;}
+    
 
 
     RFM.spin(vex::forward, fwdD*rPow, vex::percent);
@@ -160,8 +159,8 @@ void usercontrol(void) {
         Brain.Screen.clearScreen();
       }
 
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.print("flypow = %f", flyPow);
+      // Controller1.Screen.setCursor(1, 1);
+      // Controller1.Screen.print("flypow = %f", flyPow);
 
     //buttons-----------------------------------
     //indexer
