@@ -1,21 +1,7 @@
 #include "helpers.h"
 #include "pid.h"
 
-//drive
-double rPow;
-double lPow;
-int fwdD= 1;
-
-void switchDir(){
-  fwdD *= -1;
-}
-
-void autoAim(){
-  pdTurn(-45);
-}
-
-
-//helper functions
+//GENERAL USE========================================================
 void buttonHold(motor m, bool fwd, bool rev, int pow, vex::brakeType b){
   if(fwd){
       m.spin(forward, pow, percent);
@@ -41,3 +27,23 @@ void buttonHoldVolt(motor m, bool fwd, int pow){
       m.stop(coast);
   }
 }
+
+//DRIVE===============================================================
+double rPow;
+double lPow;
+
+
+//FLYWHEEL============================================================
+double flyPow = 10; //default flywheel power
+void flyPowIncrease(){
+  if(!(flyPow >= 12)){
+    flyPow += .1;
+  } 
+}
+void flyPowDecrease(){
+  if(!(flyPow <= 0)){
+    flyPow -= .1;
+  } 
+}
+
+

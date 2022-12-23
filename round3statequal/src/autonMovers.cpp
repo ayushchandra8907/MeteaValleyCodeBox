@@ -1,19 +1,17 @@
-#include "pid.h"
+#include "autonMovers.h"
 
-
-double kP = 0.25;
-double kI = 0;
-double kD = 0.1;
-
-
-//helper
-double getPIDpos(){
-  double r = rightTrack.position(degrees);
-  double l = leftTrack.position(degrees);
-
-  return r/1.0;
+//HELPERS=============================================================================
+//tracking wheels
+void clearTrackingWheels(){
+  sideTrack.setPosition(0, degrees);
+  centTrack.setPosition(0, degrees);
 }
 
+double getPIDpos(){
+  return sideTrack.position(degrees);;
+}
+
+//motors
 void powerMotors(double p){
   RFM.spin(forward, p, volt);
   RBM.spin(forward, p, volt);
@@ -36,8 +34,33 @@ void stopMotors(){
 }
 
 
-//methods========================================================================
+//REGULAR MOVEMENT=====================================================================
+void autTranslate(double d, vex::rotationUnits units, double speed){
+  int dir = fabs(d)/d;
+
+  RFM.setVelocity(speed, percent);
+  RBM.setVelocity(speed, percent);
+  LFM.setVelocity(speed, percent);
+  LBM.setVelocity(speed, percent);
+
+  RFM.spinFor(forward, d, units, false);
+  RBM.spinFor(forward, d, units, false);
+  LFM.spinFor(forward, d, units, false);
+  LBM.spinFor(forward, d, units);
+
+  RFM.setVelocity(100, percent);
+  RBM.setVelocity(100, percent);
+  LFM.setVelocity(100, percent);
+  LBM.setVelocity(100, percent);
+}
+
+
+//PID MOVEMENT=========================================================================
 void pidTranslate(double target){
+  double kP = 0.25;
+  double kI = 0;
+  double kD = 0.1;
+
   double error = target - getPIDpos();
   double integral = 0;
   double derivative = 0;
@@ -64,7 +87,7 @@ void pidTranslate(double target){
 
 
     motPow = error*kP + integral*kI + error*kD;
-    Brain.Screen.printAt(20, 40, "Right Track %3f", rightTrack.position(degrees));
+    Brain.Screen.printAt(20, 40, "Right Track %3f", sideTrack.position(degrees));
     
     powerMotors(motPow);
 
@@ -74,8 +97,7 @@ void pidTranslate(double target){
   } 
 }
 
-void pdTurn(double degrees) //PD loop turn code (better than the smartdrive and P loop methods once kP and kD are tuned properly)
-{
+void pidTurn(double degrees) {
   int dt = 20;  // Recommended wait time in milliseconds
   double target = degrees; // In revolutions
   double error = target - Inertial.rotation();
@@ -85,8 +107,7 @@ void pdTurn(double degrees) //PD loop turn code (better than the smartdrive and 
 
   double timeElap = 0;
 
-  while (timeElap < 2000) // 
-  {
+  while (timeElap < 2000) {
     error = target - Inertial.rotation();
     double derivative = (error - prevError)/dt;
     double percent = tP * error + tD * derivative;

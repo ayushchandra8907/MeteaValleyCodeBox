@@ -3,7 +3,7 @@
 
 #include "vex.h"
 #include "robot-config.h"
-#include "autonHelpers.h"
+#include "autonMovers.h"
 
 //selector===========================================
 extern int currentAut;

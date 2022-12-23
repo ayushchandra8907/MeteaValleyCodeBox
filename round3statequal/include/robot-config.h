@@ -8,15 +8,13 @@ extern motor RFM;
 extern motor RBM;
 extern motor LFM;
 extern motor LBM;
-extern encoder rightTrack;
+extern encoder sideTrack;
 extern encoder centTrack;
-extern encoder leftTrack;
 extern motor intake;
 extern motor indexer;
 extern motor fly1;
 extern motor fly2;
 extern inertial Inertial;
-extern distance distSense;
 extern bumper autonSwitch;
 
 /**
