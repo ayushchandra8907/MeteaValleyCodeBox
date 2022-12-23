@@ -1,3 +1,4 @@
+
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
@@ -58,7 +59,7 @@ void pre_auton(void) {
   leftTrack.setPosition(0, degrees);
   centTrack.setPosition(0, degrees);
 
-  autonSwitch.pressed(switchAut);
+  //autonSwitch.pressed(switchAut);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -90,11 +91,15 @@ void autonomous(void) {
   // }
   
   
-  pdTurn(90);
+  intake.setVelocity(75, percent);
 
-  pidTranslate(360);
+  autTranslate(100, degrees, 20);
+  intake.spinFor(50, degrees);
 
-  pdTurn(0);
+  // autTranslate(100, degrees, 50);
+  // pdTurn(-90);
+  // autTranslate(-30, degrees, 20);
+  // intake.spinFor(50, degrees);
 
 
   
@@ -125,18 +130,16 @@ void usercontrol(void) {
 
   //drive
   Controller1.ButtonLeft.pressed(switchDir);
-  Controller1.ButtonRight.pressed(autoAim);
-
+  //Controller1.ButtonY.pressed(endgame);
 
 
   while (1) {
     //driver control - tank drive============================================
     
-    rPow = fwdD*(RFM.velocity(percent) + (Controller1.Axis2.position() - RFM.velocity(percent))*0.3);
-    lPow = fwdD*(LFM.velocity(percent) + (Controller1.Axis3.position() - LFM.velocity(percent))*0.3);
+    rPow = Controller1.Axis2.position();
+    lPow = Controller1.Axis3.position();
 
-    if(fabs(rPow) <= 4){rPow = 0;}
-    if(fabs(lPow) <= 4){lPow = 0;}
+    
 
 
     RFM.spin(vex::forward, fwdD*rPow, vex::percent);
@@ -156,8 +159,8 @@ void usercontrol(void) {
         Brain.Screen.clearScreen();
       }
 
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.print("flypow = %f", flyPow);
+      // Controller1.Screen.setCursor(1, 1);
+      // Controller1.Screen.print("flypow = %f", flyPow);
 
     //buttons-----------------------------------
     //indexer
@@ -168,6 +171,9 @@ void usercontrol(void) {
       indexer.stop(hold);
     }
 
+    if(Controller1.ButtonRight.PRESSED == true)
+      autoAim();
+
     //intake
     buttonHold(intake, Controller1.ButtonL1.pressing(), Controller1.ButtonR1.pressing(), 100, coast);
 
@@ -176,6 +182,7 @@ void usercontrol(void) {
     buttonHoldVolt(fly2, Controller1.ButtonL2.pressing(), flyPow);
 
     //endgame
+    piston1.set(Controller1.ButtonY.pressing());
 
 
     wait(20, msec); 
@@ -188,7 +195,7 @@ void usercontrol(void) {
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
-  Competition.drivercontrol(usercontrol);
+  // Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
   pre_auton();

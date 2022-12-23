@@ -11,9 +11,12 @@ void switchDir(){
 }
 
 void autoAim(){
-  pdTurn(-45);
+  pdTurn(45);
 }
 
+void endgame(){
+  piston1.set(true);
+}
 
 //helper functions
 void buttonHold(motor m, bool fwd, bool rev, int pow, vex::brakeType b){

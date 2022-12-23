@@ -10,6 +10,7 @@ extern int fwdD;
 
 void switchDir();
 void autoAim();
+void endgame();
 
 void buttonHold(motor m, bool fwd, bool rev, int pow, vex::brakeType b);
 void buttonHold(motor m, bool fwd, int pow, vex::brakeType b);
