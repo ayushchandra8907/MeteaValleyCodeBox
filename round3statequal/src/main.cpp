@@ -15,60 +15,6 @@
 // Inertial             inertial      11              
 // autonSwitch          bumper        G               
 // ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         8               
-// fly2                 motor         9               
-// Inertial             inertial      11              
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         8               
-// fly2                 motor         9               
-// Inertial             inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RFM                  motor         16              
-// RBM                  motor         13              
-// LFM                  motor         3               
-// LBM                  motor         10              
-// rightTrack           encoder       E, F            
-// centTrack            encoder       C, D            
-// leftTrack            encoder       A, B            
-// intake               motor         20              
-// indexer              motor         14              
-// fly1                 motor         8               
-// fly2                 motor         9               
-// Inertial             inertial      11              
-// distSense            distance      6               
-// autonSwitch          bumper        G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
 
 
 
