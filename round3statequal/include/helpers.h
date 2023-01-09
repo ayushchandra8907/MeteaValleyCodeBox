@@ -22,6 +22,8 @@ extern double flyPow;
 void flyPowIncrease();
 void flyPowDecrease();
 
+//ENDGAME============================================================================
+void endgameTrigger();
 
 
 #endif

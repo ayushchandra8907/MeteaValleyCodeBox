@@ -84,13 +84,21 @@ void autonomous(void) {
   //     break;
   // }
   
+  waitUntil(Inertial.isCalibrating() == false);
   
-  pidTurn(90);
+  //pidTurn(90);
 
-  pidTranslate(360);
+  double inches = 31.0;
 
-  pidTurn(0);
+  autTranslate(360 * (inches/4/3.14), degrees, 20); //360 degrees at 10 percent
+  pidTurn(-90); //left 90 degrees
 
+  //intake shit shit shit code after sleep shit code
+
+
+  pidTurn(-90 - 45);
+  inches = 101;
+  autTranslate(360 * (inches/4/3.14), degrees, 50);
 
   
 }
@@ -117,7 +125,8 @@ void usercontrol(void) {
   Controller1.ButtonUp.pressed(flyPowIncrease);
   Controller1.ButtonDown.pressed(flyPowDecrease);
 
-
+  //endgame
+  Controller1.ButtonY.pressed(endgameTrigger);
 
   while (1) {
     //DEBUGGING-----------------------------------
@@ -149,6 +158,7 @@ void usercontrol(void) {
     buttonHoldVolt(fly2, Controller1.ButtonL2.pressing(), flyPow);
 
     //endgame
+    buttonHoldVolt(endgame, Controller1.ButtonRight.pressing(), 12);
 
 
     wait(20, msec); 

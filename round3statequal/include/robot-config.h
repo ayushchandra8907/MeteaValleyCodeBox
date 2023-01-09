@@ -11,7 +11,7 @@ extern motor LBM;
 extern encoder sideTrack;
 extern encoder centTrack;
 extern motor intake;
-extern motor indexer;
+extern motor endgame;
 extern motor fly1;
 extern motor fly2;
 extern inertial Inertial;

@@ -1,5 +1,5 @@
 #include "helpers.h"
-#include "pid.h"
+//#include "pid.h"
 
 //GENERAL USE========================================================
 void buttonHold(motor m, bool fwd, bool rev, int pow, vex::brakeType b){
@@ -46,4 +46,8 @@ void flyPowDecrease(){
   } 
 }
 
-
+//ENDGAME=============================================================
+void endgameTrigger(){
+  Brain.Screen.print("BRAZILIA");
+  Controller1.Screen.print("BRAZILA");
+}

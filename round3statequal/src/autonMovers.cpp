@@ -101,8 +101,8 @@ void pidTurn(double degrees) {
   int dt = 20;  // Recommended wait time in milliseconds
   double target = degrees; // In revolutions
   double error = target - Inertial.rotation();
-  double tP = .25;
-  double tD = .1;
+  double tP = .25; //.17
+  double tD = 0.05; //.035
   double prevError = error;
 
   double timeElap = 0;
