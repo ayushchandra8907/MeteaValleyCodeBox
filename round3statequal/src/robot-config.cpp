@@ -15,12 +15,12 @@ motor LFM = motor(PORT3, ratio18_1, true);
 motor LBM = motor(PORT10, ratio18_1, true);
 encoder sideTrack = encoder(Brain.ThreeWirePort.E);
 encoder centTrack = encoder(Brain.ThreeWirePort.C);
-motor intake = motor(PORT20, ratio18_1, true);
-motor endgame = motor(PORT14, ratio36_1, true);
+motor intake = motor(PORT20, ratio6_1, false);
+motor endgame = motor(PORT1, ratio36_1, true);
 motor fly1 = motor(PORT8, ratio6_1, false);
-motor fly2 = motor(PORT9, ratio6_1, true);
 inertial Inertial = inertial(PORT11);
 bumper autonSwitch = bumper(Brain.ThreeWirePort.G);
+motor indexer = motor(PORT18, ratio18_1, true);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

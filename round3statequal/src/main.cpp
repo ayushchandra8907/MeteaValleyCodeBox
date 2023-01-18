@@ -9,12 +9,13 @@
 // sideTrack            encoder       E, F            
 // centTrack            encoder       C, D            
 // intake               motor         20              
-// indexer              motor         14              
+// endgame              motor         1               
 // fly1                 motor         8               
-// fly2                 motor         9               
 // Inertial             inertial      11              
 // autonSwitch          bumper        G               
+// indexer              motor         18              
 // ---- END VEXCODE CONFIGURED DEVICES ----
+
 
 
 
@@ -85,20 +86,52 @@ void autonomous(void) {
   // }
   
   waitUntil(Inertial.isCalibrating() == false);
+  intake.setVelocity(100, percent);
+  double inches;
+
+  // //RIGHT SIDE
+  inches = 20;
+  autTranslate(360*(inches/4/3.14), degrees, 50);
+  pidTurn(-90);
+
+  inches = -4;
+  autTranslate(360*(inches/4/3.14), degrees, 10);
+  intake.spinFor(forward, 360, degrees);
+
+
+
+  //LEFT SIDE
+  // autTranslate(-360, degrees, 10);
+  // intake.spinFor(forward, 360, degrees);
+
+  //SKILLS
+  // inches = -1;
+  // autTranslate(360*(inches/4/3.14), degrees, 10);
+
+  // intake.spinFor(forward, 720, degrees);
+
+  // inches = 12;
+  // autTranslate(360*(inches/4/3.14), degrees, 10);
+
+  // pidTurn(90);
+  // inches = -12;
   
-  //pidTurn(90);
+  // autTranslate(360*(inches/4/3.14), degrees, 10);
 
-  double inches = 31.0;
+  // intake.spinFor(forward, 720, degrees);
 
-  autTranslate(360 * (inches/4/3.14), degrees, 20); //360 degrees at 10 percent
-  pidTurn(-90); //left 90 degrees
+  inches = 5;
+  autTranslate(360*(inches/4/3.14), degrees, 10);
 
-  //intake shit shit shit code after sleep shit code
+  pidTurn(45);
+
+  endgame.spinFor(forward, 2, turns);
 
 
-  pidTurn(-90 - 45);
-  inches = 101;
-  autTranslate(360 * (inches/4/3.14), degrees, 50);
+
+
+
+
 
   
 }
@@ -130,18 +163,23 @@ void usercontrol(void) {
 
   while (1) {
     //DEBUGGING-----------------------------------
-      // if(Controller1.ButtonX.pressing()){
-      //   //Brain.Screen.printAt(20, 40, "Inertial %3f", Inertial.rotation());
-      //   Controller1.Screen.setCursor(1, 1);
-      //   Controller1.Screen.print("flypow = %f", flyPow);
-      // } else {
-      //   //Brain.Screen.clearScreen();
-      // }
+    if(Controller1.ButtonRight.pressing()){
+      Controller1.Screen.setCursor(1, 1);
+      Controller1.Screen.print("flypow = %f", flyPow);
+    } else {
+      //Controller1.Screen.clearScreen();
+    }
 
 
     //driver control - tank drive============================================    
     rPow = (pow(Controller1.Axis2.position(), 3))*(pow(0.01, 2));
     lPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2));
+
+    if(Controller1.ButtonL2.pressing()){
+      rPow /= 2;
+      lPow /= 2;
+    }
+
 
     RFM.spin(vex::forward, rPow, vex::percent);
     RBM.spin(vex::forward, rPow, vex::percent);
@@ -151,15 +189,20 @@ void usercontrol(void) {
 
     //buttons---------------------------------------------------------------------------------------------
     //intake, roller, indexer
-    buttonHold(intake, Controller1.ButtonL1.pressing(), Controller1.ButtonR1.pressing(), 100, coast);
+    buttonHold(intake, Controller1.ButtonR1.pressing(), Controller1.ButtonL1.pressing(), 100, coast);
+    buttonHold(indexer, Controller1.ButtonR1.pressing(), Controller1.ButtonL1.pressing(), 100, coast);
 
     //flywheel
-    buttonHoldVolt(fly1, Controller1.ButtonL2.pressing(), flyPow);
-    buttonHoldVolt(fly2, Controller1.ButtonL2.pressing(), flyPow);
+    buttonHoldVolt(fly1, Controller1.ButtonR2.pressing(), flyPow);
+
+    //indexer
 
     //endgame
-    buttonHoldVolt(endgame, Controller1.ButtonRight.pressing(), 12);
-
+    if(Controller1.ButtonY.pressing()){
+      endgame.spin(forward, 100, percent);
+    } else {
+      endgame.stop(hold);
+    }
 
     wait(20, msec); 
   }

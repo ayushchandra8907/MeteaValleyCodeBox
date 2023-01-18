@@ -34,7 +34,7 @@ double lPow;
 
 
 //FLYWHEEL============================================================
-double flyPow = 10; //default flywheel power
+double flyPow = 9; //default flywheel power
 void flyPowIncrease(){
   if(!(flyPow >= 12)){
     flyPow += .1;

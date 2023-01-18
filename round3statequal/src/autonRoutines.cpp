@@ -7,6 +7,8 @@ void switchAut(){
   if(currentAut == 2){
     currentAut = 0;
   }
+  Brain.Screen.clearScreen();
+  Brain.Screen.print(currentAut);
 }
 
 //ROUTINES===========================================

@@ -13,9 +13,9 @@ extern encoder centTrack;
 extern motor intake;
 extern motor endgame;
 extern motor fly1;
-extern motor fly2;
 extern inertial Inertial;
 extern bumper autonSwitch;
+extern motor indexer;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
