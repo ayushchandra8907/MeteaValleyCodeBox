@@ -23,6 +23,7 @@
 #include "helpers.h"
 #include "autonMovers.h"
 #include "autonRoutines.h"
+#include "gui.h"
 
 using namespace vex;
 
@@ -147,11 +148,13 @@ void autonomous(void) {
 /*---------------------------------------------------------------------------*/
 
 void usercontrol(void) {
-  // User control code here, inside the loop
-  sideTrack.setPosition(0, degrees);
-  centTrack.setPosition(0, degrees);
+  
+  //init stuff
+  resetAllSensors();
+  displayPatriotism();
 
 
+  //debugging
   Controller1.ButtonA.pressed(clearTrackingWheels);
 
   //flywheel settings
@@ -198,11 +201,7 @@ void usercontrol(void) {
     //indexer
 
     //endgame
-    if(Controller1.ButtonY.pressing()){
-      endgame.spin(forward, 100, percent);
-    } else {
-      endgame.stop(hold);
-    }
+    buttonHold(endgame, Controller1.ButtonY.pressing(), 100, hold);
 
     wait(20, msec); 
   }

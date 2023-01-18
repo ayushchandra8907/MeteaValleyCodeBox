@@ -36,8 +36,6 @@ void stopMotors(){
 
 //REGULAR MOVEMENT=====================================================================
 void autTranslate(double d, vex::rotationUnits units, double speed){
-  int dir = fabs(d)/d;
-
   RFM.setVelocity(speed, percent);
   RBM.setVelocity(speed, percent);
   LFM.setVelocity(speed, percent);
@@ -72,16 +70,16 @@ void pidTranslate(double target){
 
   while(timeElap < 2000){
 
-    //p for porn
+    //p for proportional
     error = target - getPIDpos();
 
 
-    //i for intercourse
+    //i for intregral
     if (error <= 0)
       integral = 0;
     integral += error;
 
-    //d for dick
+    //d for derivative
     derivative = error-prevError;
     prevError = error;
 

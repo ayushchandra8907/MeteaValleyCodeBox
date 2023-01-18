@@ -2,6 +2,11 @@
 //#include "pid.h"
 
 //GENERAL USE========================================================
+void resetAllSensors(){
+  sideTrack.setPosition(0, degrees);
+  centTrack.setPosition(0, degrees);
+}
+
 void buttonHold(motor m, bool fwd, bool rev, int pow, vex::brakeType b){
   if(fwd){
       m.spin(forward, pow, percent);

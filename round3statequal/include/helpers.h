@@ -6,6 +6,8 @@
 
 
 //GENERAL USE========================================================================
+void resetAllSensors();
+
 void buttonHold(motor m, bool fwd, bool rev, int pow, vex::brakeType b);
 void buttonHold(motor m, bool fwd, int pow, vex::brakeType b);
 void buttonHoldVolt(motor m, bool fwd, int pow);
