@@ -1,9 +1,50 @@
 #include "gui.h"
 //dimensions: 480x272
 
+int driverMode = 1;
+int currColor;
+
 //AUTON
 void autonGUI(){
+  Brain.Screen.setFont(vex::fontType::mono30);
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.drawLine(240, 0, 240, 272);
 
+  //right side - driver selection
+  Brain.Screen.printAt(270, 40, "Driver mode:");
+  
+  if(driverMode == 0){
+    Brain.Screen.printAt(305, 80, "      ");
+    Brain.Screen.printAt(320, 80, "Tank");
+  } else {
+    Brain.Screen.printAt(305, 80, "Arcade");
+  }
+
+  Brain.Screen.setFillColor("#808080");
+  Brain.Screen.drawRectangle(310, 120, 100, 100);
+
+
+}
+
+void switchDriverMode(){
+  driverMode++;
+  if(driverMode == 2){
+    driverMode = 0;
+  }
+  updateGUI();
+}
+
+void updateGUI(){
+  autonGUI();
+}
+
+void brainAutonButtons(){
+  int x = Brain.Screen.xPosition();
+  int y = Brain.Screen.yPosition();
+  
+  if(x >= 310 && x <= 410 && y >= 120 && y <= 220){
+    switchDriverMode();
+  }
 }
 
 //DRIVER CONTROL

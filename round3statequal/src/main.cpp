@@ -49,13 +49,15 @@ void pre_auton(void) {
 
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
-  
+  resetAllSensors();
   Inertial.calibrate();
 
-  sideTrack.setPosition(0, degrees);
-  centTrack.setPosition(0, degrees);
-
+  //start of preauton gui
+  autonGUI();
+  Brain.Screen.pressed(brainAutonButtons);
+  
   autonSwitch.pressed(switchAut);
+  
 }
 
 /*---------------------------------------------------------------------------*/
@@ -69,6 +71,9 @@ void pre_auton(void) {
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
+  clearBrain();
+
+  Brain.Screen.print("Auton started");
   // switch(currentAut) {
   //   case 0:
   //     autonRoute0();
@@ -174,9 +179,16 @@ void usercontrol(void) {
     }
 
 
-    //driver control - tank drive============================================    
-    rPow = (pow(Controller1.Axis2.position(), 3))*(pow(0.01, 2));
-    lPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2));
+    //driver control - tank drive============================================
+    if(driverMode == 0){
+      rPow = (pow(Controller1.Axis2.position(), 3))*(pow(0.01, 2));
+      lPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2));
+    } else {
+      rPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2)) - (pow(Controller1.Axis4.position(), 3))*(pow(0.01, 2));
+      lPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2)) + (pow(Controller1.Axis4.position(), 3))*(pow(0.01, 2));
+    }    
+    
+
 
     if(Controller1.ButtonL2.pressing()){
       rPow /= 2;

@@ -4,11 +4,9 @@
 int currentAut = 0;
 void switchAut(){
   currentAut++;
-  if(currentAut == 2){
-    currentAut = 0;
-  }
-  Brain.Screen.clearScreen();
-  Brain.Screen.print(currentAut);
+  
+
+  Brain.Screen.printAt(20, 40, "Current routine: %i", currentAut);
 }
 
 //ROUTINES===========================================
