@@ -13,6 +13,7 @@ void clearBrain();
 
 void autonGUI();
 void switchDriverMode();
+void switchTeamColor();
 void updateGUI();
 void brainAutonButtons();
 

@@ -179,7 +179,7 @@ void usercontrol(void) {
     }
 
 
-    //driver control - tank drive============================================
+    //driver control ============================================
     if(driverMode == 0){
       rPow = (pow(Controller1.Axis2.position(), 3))*(pow(0.01, 2));
       lPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2));

@@ -6,7 +6,7 @@ void switchAut(){
   currentAut++;
   
 
-  Brain.Screen.printAt(20, 40, "Current routine: %i", currentAut);
+  //Brain.Screen.printAt(20, 40, "Current routine: %i", currentAut);
 }
 
 //ROUTINES===========================================

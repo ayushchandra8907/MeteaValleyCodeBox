@@ -1,8 +1,9 @@
 #include "gui.h"
+#include "autonRoutines.h"
 //dimensions: 480x272
 
 int driverMode = 1;
-int currColor;
+int currColor = 0;
 
 //AUTON
 void autonGUI(){
@@ -10,7 +11,7 @@ void autonGUI(){
   Brain.Screen.setFillColor(black);
   Brain.Screen.drawLine(240, 0, 240, 272);
 
-  //right side - driver selection
+  //right side - driver selection----------------------------------------------
   Brain.Screen.printAt(270, 40, "Driver mode:");
   
   if(driverMode == 0){
@@ -23,6 +24,27 @@ void autonGUI(){
   Brain.Screen.setFillColor("#808080");
   Brain.Screen.drawRectangle(310, 120, 100, 100);
 
+  //left side - auton selection + color----------------------------------------
+  Brain.Screen.setFont(vex::fontType::mono30);
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.printAt(35, 40, "Autonomous:");
+
+  //color
+  if(currColor == 0){
+    Brain.Screen.setFillColor(blue);
+  } else {
+    Brain.Screen.setFillColor(red);
+  }
+  Brain.Screen.drawRectangle(50, 60, 130, 20);
+
+  //auton routine
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.printAt(60, 120, "Routine:");
+
+  Brain.Screen.setFont(vex::fontType::mono60);
+  Brain.Screen.printAt(105, 200, "%u", currentAut);
+
+
 
 }
 
@@ -30,6 +52,14 @@ void switchDriverMode(){
   driverMode++;
   if(driverMode == 2){
     driverMode = 0;
+  }
+  updateGUI();
+}
+
+void switchTeamColor(){
+  currColor++;
+  if(currColor == 2){
+    currColor = 0;
   }
   updateGUI();
 }
@@ -45,6 +75,20 @@ void brainAutonButtons(){
   if(x >= 310 && x <= 410 && y >= 120 && y <= 220){
     switchDriverMode();
   }
+
+  if(x >= 50 && x <= 180 && y >= 60 && y <= 100){
+    switchTeamColor();
+  }
+
+  if(x >= 50 && x <= 180 && y >= 60 && y <= 100){
+    switchTeamColor();
+  }
+
+  if(x >= 105-50 && x <= 105+50 && y >=200 - 20 && y <= 200 +20){
+    switchAut();
+    autonGUI();
+  }
+
 }
 
 //DRIVER CONTROL
