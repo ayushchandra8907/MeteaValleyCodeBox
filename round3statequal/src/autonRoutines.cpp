@@ -5,6 +5,9 @@ int currentAut = 0;
 void switchAut(){
   currentAut++;
   
+  if(currentAut == 3){
+    currentAut = 0;
+  }
 
   //Brain.Screen.printAt(20, 40, "Current routine: %i", currentAut);
 }

@@ -84,7 +84,7 @@ void brainAutonButtons(){
     switchTeamColor();
   }
 
-  if(x >= 105-50 && x <= 105+50 && y >=200 - 20 && y <= 200 +20){
+  if(x >= 105-50 && x <= 105+50 && y >=200 - 60 && y <= 200 +20){
     switchAut();
     autonGUI();
   }
