@@ -76,17 +76,12 @@ void brainAutonButtons(){
     switchDriverMode();
   }
 
-  if(x >= 50 && x <= 180 && y >= 60 && y <= 100){
-    switchTeamColor();
-  }
-
-  if(x >= 50 && x <= 180 && y >= 60 && y <= 100){
+  if(x >= 0 && x <= 180 && y >= 0 && y <= 100){
     switchTeamColor();
   }
 
   if(x >= 105-50 && x <= 105+50 && y >=200 - 60 && y <= 200 +20){
     switchAut();
-    autonGUI();
   }
 
 }

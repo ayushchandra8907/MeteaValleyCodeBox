@@ -1,5 +1,5 @@
 #include "autonRoutines.h"
-
+#include "gui.h"
 
 int currentAut = 0;
 void switchAut(){
@@ -9,7 +9,7 @@ void switchAut(){
     currentAut = 0;
   }
 
-  //Brain.Screen.printAt(20, 40, "Current routine: %i", currentAut);
+  autonGUI();
 }
 
 //ROUTINES===========================================

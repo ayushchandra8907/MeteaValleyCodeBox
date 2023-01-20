@@ -96,13 +96,13 @@ void autonomous(void) {
   double inches;
 
   // //RIGHT SIDE
-  inches = 20;
-  autTranslate(360*(inches/4/3.14), degrees, 50);
-  pidTurn(-90);
+  // inches = 20;
+  // autTranslate(360*(inches/4/3.14), degrees, 50);
+  // pidTurn(-90);
 
-  inches = -4;
-  autTranslate(360*(inches/4/3.14), degrees, 10);
-  intake.spinFor(forward, 360, degrees);
+  // inches = -4;
+  // autTranslate(360*(inches/4/3.14), degrees, 10);
+  // intake.spinFor(forward, 360, degrees);
 
 
 
@@ -126,12 +126,12 @@ void autonomous(void) {
 
   // intake.spinFor(forward, 720, degrees);
 
-  inches = 5;
-  autTranslate(360*(inches/4/3.14), degrees, 10);
+  // inches = 5;
+  // autTranslate(360*(inches/4/3.14), degrees, 10);
 
-  pidTurn(45);
+  // pidTurn(45);
 
-  endgame.spinFor(forward, 2, turns);
+  // endgame.spinFor(forward, 2, turns);
 
 
 
