@@ -12,6 +12,7 @@ void switchAut();
 
 //ROUTINES===========================================
 
+void skillsAut();
 
 //nothing auton (auton 0):-------------------------------------------
 
@@ -20,7 +21,7 @@ void switchAut();
 Does absolutely nothing.
 
 */
-void autonRoute0();
+void nothingAut();
 
 
 //left side auton (auton 1):-------------------------------------------
@@ -31,7 +32,7 @@ Auton for the left side of the field. Goes back and activates rollers, and then 
 
 */
 
-void autonRoute1();
+void leftRoller();
 
 
 //right side auton (auton 2):-------------------------------------------
@@ -42,7 +43,10 @@ Auton for the right side of the field. Goes forward and turns to go back and act
 
 */
 
-void autonRoute2();
+void leftAWP();
+
+
+void rightRoller();
 
 
 

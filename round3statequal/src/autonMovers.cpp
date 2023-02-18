@@ -4,12 +4,11 @@
 //HELPERS=============================================================================
 //tracking wheels
 void clearTrackingWheels(){
-  sideTrack.setPosition(0, degrees);
-  centTrack.setPosition(0, degrees);
+  straightTrack.setPosition(0, degrees);
 }
 
 double getPIDpos(){
-  return sideTrack.position(degrees);;
+  return straightTrack.position(degrees);;
 }
 
 //motors
@@ -86,7 +85,7 @@ void pidTranslate(double target){
 
 
     motPow = error*kP + integral*kI + error*kD;
-    Brain.Screen.printAt(20, 40, "Right Track %3f", sideTrack.position(degrees));
+    //Brain.Screen.printAt(20, 40, "Right Track %3f", straightTrack.position(degrees));
     
     powerMotors(motPow);
 

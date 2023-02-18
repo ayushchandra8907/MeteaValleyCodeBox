@@ -7,7 +7,7 @@
 // LFM                  motor         3               
 // LBM                  motor         10              
 // sideTrack            encoder       E, F            
-// centTrack            encoder       C, D            
+// straightTrack        encoder       A, B            
 // intake               motor         20              
 // endgame              motor         1               
 // fly1                 motor         8               
@@ -15,8 +15,6 @@
 // autonSwitch          bumper        G               
 // indexer              motor         18              
 // ---- END VEXCODE CONFIGURED DEVICES ----
-
-
 
 
 #include "vex.h"
@@ -52,6 +50,12 @@ void pre_auton(void) {
   resetAllSensors();
   Inertial.calibrate();
 
+  RFM.setBrake(coast);
+  LFM.setBrake(coast);
+  RBM.setBrake(coast);
+  LBM.setBrake(coast);
+
+
   //start of preauton gui
   autonGUI();
   Brain.Screen.pressed(brainAutonButtons);
@@ -74,72 +78,35 @@ void autonomous(void) {
   clearBrain();
 
   Brain.Screen.print("Auton started");
-  // switch(currentAut) {
-  //   case 0:
-  //     autonRoute0();
-  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
-  //     break;
+  switch(currentAut) {
+    case 0:
+      skillsAut();
+      Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
+      break;
 
-  //   case 1:
-  //     autonRoute1();
-  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
-  //     break;
+    case 1:
+      nothingAut();
+      Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
+      break;
 
-  //   case 2:
-  //     autonRoute2();
-  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
-  //     break;
-  // }
+    case 2:
+      leftRoller();
+      Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
+      break;
+    
+    case 3:
+      leftAWP();
+      Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
+      break;
+    
+    case 4:
+      rightRoller();
+      Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
+      break;
+
+  }
   
-  waitUntil(Inertial.isCalibrating() == false);
-  intake.setVelocity(100, percent);
-  double inches;
 
-  // //RIGHT SIDE
-  // inches = 20;
-  // autTranslate(360*(inches/4/3.14), degrees, 50);
-  // pidTurn(-90);
-
-  // inches = -4;
-  // autTranslate(360*(inches/4/3.14), degrees, 10);
-  // intake.spinFor(forward, 360, degrees);
-
-
-
-  //LEFT SIDE
-  // autTranslate(-360, degrees, 10);
-  // intake.spinFor(forward, 360, degrees);
-
-  //SKILLS
-  // inches = -1;
-  // autTranslate(360*(inches/4/3.14), degrees, 10);
-
-  // intake.spinFor(forward, 720, degrees);
-
-  // inches = 12;
-  // autTranslate(360*(inches/4/3.14), degrees, 10);
-
-  // pidTurn(90);
-  // inches = -12;
-  
-  // autTranslate(360*(inches/4/3.14), degrees, 10);
-
-  // intake.spinFor(forward, 720, degrees);
-
-  // inches = 5;
-  // autTranslate(360*(inches/4/3.14), degrees, 10);
-
-  // pidTurn(45);
-
-  // endgame.spinFor(forward, 2, turns);
-
-
-
-
-
-
-
-  
 }
 
 /*---------------------------------------------------------------------------*/
@@ -174,18 +141,33 @@ void usercontrol(void) {
     if(Controller1.ButtonRight.pressing()){
       Controller1.Screen.setCursor(1, 1);
       Controller1.Screen.print("flypow = %f", flyPow);
+
+      Brain.Screen.printAt(20, 40, "%f" , straightTrack.position(degrees));
     } else {
       //Controller1.Screen.clearScreen();
     }
 
-
+    
     //driver control ============================================
-    if(driverMode == 0){
-      rPow = (pow(Controller1.Axis2.position(), 3))*(pow(0.01, 2));
-      lPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2));
+    if(0 == 0){
+      rPow = RFM.velocity(percent) + (Controller1.Axis2.position() - RFM.velocity(percent))*0.5;
+      lPow = LFM.velocity(percent) + (Controller1.Axis3.position() - LFM.velocity(percent))*0.5;
+
+      if(fabs(rPow) < 5){rPow = 0;}
+      if(fabs(lPow) < 5){lPow = 0;}
+
+      // double t=20;
+
+      // double inputR = Controller1.Axis2.position();
+      // rPow = (exp(-t/10)+exp((fabs(inputR)-100)/10)*(1-exp(-t/10))) * inputR;
+
+      // double inputL = Controller1.Axis3.position();
+      // lPow = (exp(-t/10)+exp((fabs(inputL)-100)/10)*(1-exp(-t/10))) * inputL;
+
+
     } else {
-      rPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2)) - (pow(Controller1.Axis4.position(), 3))*(pow(0.01, 2));
-      lPow = (pow(Controller1.Axis3.position(), 3))*(pow(0.01, 2)) + (pow(Controller1.Axis4.position(), 3))*(pow(0.01, 2));
+      rPow = Controller1.Axis3.position() - Controller1.Axis1.position();
+      lPow = Controller1.Axis3.position() + Controller1.Axis2.position();
     }    
     
 
@@ -213,7 +195,7 @@ void usercontrol(void) {
     //indexer
 
     //endgame
-    buttonHold(endgame, Controller1.ButtonY.pressing(), 100, hold);
+    buttonHold(endgame, Controller1.ButtonY.pressing(), Controller1.ButtonA.pressing(), 100, hold);
 
     wait(20, msec); 
   }

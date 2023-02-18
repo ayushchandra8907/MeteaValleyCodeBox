@@ -9,17 +9,7 @@ brain  Brain;
 
 // VEXcode device constructors
 controller Controller1 = controller(primary);
-motor RFM = motor(PORT16, ratio18_1, false);
-motor RBM = motor(PORT13, ratio18_1, false);
-motor LFM = motor(PORT3, ratio18_1, true);
-motor LBM = motor(PORT10, ratio18_1, true);
-encoder straightTrack = encoder(Brain.ThreeWirePort.G);
-motor intake = motor(PORT20, ratio6_1, false);
-motor endgame = motor(PORT1, ratio36_1, true);
-motor fly1 = motor(PORT8, ratio6_1, true);
-inertial Inertial = inertial(PORT11);
-bumper autonSwitch = bumper(Brain.ThreeWirePort.C);
-motor indexer = motor(PORT18, ratio18_1, true);
+encoder en = encoder(Brain.ThreeWirePort.G);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

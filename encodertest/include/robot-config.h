@@ -4,17 +4,7 @@ extern brain Brain;
 
 // VEXcode devices
 extern controller Controller1;
-extern motor RFM;
-extern motor RBM;
-extern motor LFM;
-extern motor LBM;
-extern encoder straightTrack;
-extern motor intake;
-extern motor endgame;
-extern motor fly1;
-extern inertial Inertial;
-extern bumper autonSwitch;
-extern motor indexer;
+extern encoder en;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
