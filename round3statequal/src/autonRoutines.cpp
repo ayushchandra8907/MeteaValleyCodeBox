@@ -1,12 +1,12 @@
 #include "autonRoutines.h"
 #include "gui.h"
 
-int currentAut = 3;
+int currentAut = 0;
 
 void switchAut(){
   currentAut++;
   
-  if(currentAut == 4){
+  if(currentAut == 5){
     currentAut = 0;
   }
 
@@ -55,11 +55,12 @@ void skillsAut(){
 
   pidTurn(45);
 
+
   RFM.spin(reverse);
   LFM.spin(reverse);
   RBM.spin(reverse);
   LBM.spin(reverse);
-  wait(3000, msec);
+  wait(2000, msec);
   RFM.stop(coast);
   LFM.stop(coast);
   RBM.stop(coast);
@@ -70,6 +71,8 @@ void skillsAut(){
   pidTurn(45);
 
   endgame.spinFor(forward, 90, degrees);
+
+ 
   
 }
 
@@ -105,35 +108,66 @@ void leftRoller(){
 }
 
 //right side auton (auton 3):
-void leftAWP(){
-  leftRoller();
+void rightAWP(){
+  RFM.setVelocity(100, percent);
+  LFM.setVelocity(100, percent);
+  RBM.setVelocity(100, percent);
+  LBM.setVelocity(100, percent);
+
+  intake.setVelocity(100, percent);
+  indexer.setVelocity(100, percent);
+
+  intake.spin(forward);
+  indexer.spin(forward);
 
   RFM.spin(forward);
   LFM.spin(forward);
   RBM.spin(forward);
   LBM.spin(forward);
-  wait(500, msec);
+  wait(900, msec);
+  RFM.stop(hold);
+  LFM.stop(hold);
+  RBM.stop(hold);
+  LBM.stop(hold);
+
+  pidTurn(19);
+
+  intake.spin(reverse);
+  indexer.stop(coast);
+
+  fly1.spin(forward, 12, volt);
+
+  wait(800, msec);
+  intake.stop(coast);
+  wait(1500, msec);
+
+  indexer.spinFor(reverse, 220, degrees);
+
+  wait(700, msec);
+
+  indexer.spinFor(reverse, 220, degrees);
+
+  wait(800, msec);
+
+  indexer.spinFor(reverse, 220, degrees);
+
+  fly1.stop(coast);
+
+  //roller
+  pidTurn(-35);
+
+  RFM.spin(reverse);
+  LFM.spin(reverse);
+  RBM.spin(reverse);
+  LBM.spin(reverse);
+  wait(2000, msec);
   RFM.stop(coast);
   LFM.stop(coast);
   RBM.stop(coast);
   LBM.stop(coast);
 
-  pidTurn(-17);
+  indexer.spinFor(reverse, 50, degrees);
 
-  //indexer.spinFor(forward, 50, degrees);
-
-  fly1.spin(forward, 11.7, volt);
-  wait(4000, msec);
-
-  indexer.spinFor(reverse, 90, degrees);
-
-  wait(4000, msec);
-
-  indexer.spin(reverse);
-  wait(5000, msec);
-
-  indexer.stop();
-  fly1.stop();
 
 
 }

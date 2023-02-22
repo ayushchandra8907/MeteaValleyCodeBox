@@ -43,7 +43,7 @@ Auton for the right side of the field. Goes forward and turns to go back and act
 
 */
 
-void leftAWP();
+void rightAWP();
 
 
 void rightRoller();

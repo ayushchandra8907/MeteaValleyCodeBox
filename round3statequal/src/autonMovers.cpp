@@ -68,7 +68,7 @@ void pidTranslate(double target){
 
   double timeElap = 0;
 
-  while(timeElap < 2000){
+  while(timeElap < 1500){
 
     //p for proportional
     error = target - getPIDpos();

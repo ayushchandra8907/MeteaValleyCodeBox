@@ -6,15 +6,15 @@
 // RBM                  motor         13              
 // LFM                  motor         3               
 // LBM                  motor         10              
-// sideTrack            encoder       E, F            
-// straightTrack        encoder       A, B            
+// straightTrack        encoder       G, H            
 // intake               motor         20              
 // endgame              motor         1               
 // fly1                 motor         8               
 // Inertial             inertial      11              
-// autonSwitch          bumper        G               
+// autonSwitch          bumper        C               
 // indexer              motor         18              
 // ---- END VEXCODE CONFIGURED DEVICES ----
+
 
 
 #include "vex.h"
@@ -95,7 +95,7 @@ void autonomous(void) {
       break;
     
     case 3:
-      leftAWP();
+      rightAWP();
       Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
       break;
     
@@ -156,15 +156,6 @@ void usercontrol(void) {
       if(fabs(rPow) < 5){rPow = 0;}
       if(fabs(lPow) < 5){lPow = 0;}
 
-      // double t=20;
-
-      // double inputR = Controller1.Axis2.position();
-      // rPow = (exp(-t/10)+exp((fabs(inputR)-100)/10)*(1-exp(-t/10))) * inputR;
-
-      // double inputL = Controller1.Axis3.position();
-      // lPow = (exp(-t/10)+exp((fabs(inputL)-100)/10)*(1-exp(-t/10))) * inputL;
-
-
     } else {
       rPow = Controller1.Axis3.position() - Controller1.Axis1.position();
       lPow = Controller1.Axis3.position() + Controller1.Axis2.position();
@@ -196,6 +187,9 @@ void usercontrol(void) {
 
     //endgame
     buttonHold(endgame, Controller1.ButtonY.pressing(), Controller1.ButtonA.pressing(), 100, hold);
+
+
+
 
     wait(20, msec); 
   }
