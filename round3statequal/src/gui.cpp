@@ -2,7 +2,7 @@
 #include "autonRoutines.h"
 //dimensions: 480x272
 
-int driverMode = 0;
+int driverMode = 1;
 int currColor = 0;
 
 //AUTON

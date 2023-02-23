@@ -24,8 +24,13 @@ extern double flyPow;
 void flyPowIncrease();
 void flyPowDecrease();
 
+extern bool flyOn;
+void flyTogg();
+
 //ENDGAME============================================================================
+extern bool endgameOn;
 void endgameTrigger();
+vex::brakeType currEndgameBrake();
 
 
 #endif

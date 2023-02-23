@@ -26,30 +26,41 @@ void turnMotors(double p){
   LBM.spin(forward, p, volt);
 }
 
-void stopMotors(){
-  RFM.stop();
-  RBM.stop();
-  LFM.stop();
-  LBM.stop();
+void setMotors(double p){
+  RFM.setVelocity(p, percent);
+  LFM.setVelocity(p, percent);
+  RBM.setVelocity(p, percent);
+  LBM.setVelocity(p, percent);
+}
+
+void stopMotors(vex::brakeType b){
+  RFM.stop(b);
+  RBM.stop(b);
+  LFM.stop(b);
+  LBM.stop(b);
 }
 
 
 //REGULAR MOVEMENT=====================================================================
-void autTranslate(double d, vex::rotationUnits units, double speed){
-  RFM.setVelocity(speed, percent);
-  RBM.setVelocity(speed, percent);
-  LFM.setVelocity(speed, percent);
-  LBM.setVelocity(speed, percent);
+void autTranslate(double tim, double pow, bool rev, vex::brakeType b){
+  setMotors(pow);
+  Inertial.setRotation(0, degrees);
 
-  RFM.spinFor(forward, d, units, false);
-  RBM.spinFor(forward, d, units, false);
-  LFM.spinFor(forward, d, units, false);
-  LBM.spinFor(forward, d, units);
+  if(rev){
+    RFM.spin(reverse, pow + Inertial.rotation(), percent);
+    LFM.spin(reverse, pow - Inertial.rotation(), percent);
+    RBM.spin(reverse, pow + Inertial.rotation(), percent);
+    LBM.spin(reverse, pow - Inertial.rotation(), percent);
+  } else {
+    RFM.spin(forward, pow + Inertial.rotation(), percent);
+    LFM.spin(forward, pow - Inertial.rotation(), percent);
+    RBM.spin(forward, pow + Inertial.rotation(), percent);
+    LBM.spin(forward, pow - Inertial.rotation(), percent);
+  }
 
-  RFM.setVelocity(100, percent);
-  RBM.setVelocity(100, percent);
-  LFM.setVelocity(100, percent);
-  LBM.setVelocity(100, percent);
+  wait(tim, msec);
+
+  stopMotors(b);
 }
 
 
@@ -69,10 +80,8 @@ void pidTranslate(double target){
   double timeElap = 0;
 
   while(timeElap < 1500){
-
     //p for proportional
     error = target - getPIDpos();
-
 
     //i for intregral
     if (error <= 0)
@@ -82,7 +91,6 @@ void pidTranslate(double target){
     //d for derivative
     derivative = error-prevError;
     prevError = error;
-
 
     motPow = error*kP + integral*kI + error*kD;
     //Brain.Screen.printAt(20, 40, "Right Track %3f", straightTrack.position(degrees));
@@ -95,9 +103,12 @@ void pidTranslate(double target){
   } 
 }
 
-void pidTurn(double degrees) {
+void pidTurn(double deg) {
+  Inertial.setRotation(0, degrees);
+
+
   int dt = 20;  // Recommended wait time in milliseconds
-  double target = degrees; // In revolutions
+  double target = deg; // In revolutions
   double error = target - Inertial.rotation();
   double tP = .25; //.17
   double tD = 0.05; //.035
@@ -120,6 +131,6 @@ void pidTurn(double degrees) {
     timeElap += dt;
   }
   
-  stopMotors();
+  stopMotors(hold);
 
 }

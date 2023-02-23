@@ -1,7 +1,7 @@
 #include "autonRoutines.h"
 #include "gui.h"
 
-int currentAut = 0;
+int currentAut = 1;
 
 void switchAut(){
   currentAut++;
@@ -76,9 +76,9 @@ void skillsAut(){
   
 }
 
-//backupSkils auton (auton 1):
+//nothing auton (auton 1):
 void nothingAut(){
-
+  autTranslate(3500, 80, false, coast);
 }
 
 

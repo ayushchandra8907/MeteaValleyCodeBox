@@ -13,11 +13,11 @@ double getPIDpos();
 //motors
 void powerMotors(double p);
 void turnMotors(double p);
-void stopMotors();
+void setMotors(double p);
+void stopMotors(vex::brakeType b);
 
 //REGULAR MOVEMENT========================================================
-void autTranslate(double d, vex::rotationUnits units, double voltage);
-
+void autTranslate(double tim, double pow, bool rev, vex::brakeType b);
 
 //PID MOVEMENT============================================================
 void pidTranslate(double target);

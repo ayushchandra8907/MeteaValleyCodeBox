@@ -149,7 +149,7 @@ void usercontrol(void) {
 
     
     //driver control ============================================
-    if(0 == 0){
+    if(driverMode == 0){
       rPow = RFM.velocity(percent) + (Controller1.Axis2.position() - RFM.velocity(percent))*0.5;
       lPow = LFM.velocity(percent) + (Controller1.Axis3.position() - LFM.velocity(percent))*0.5;
 
@@ -157,8 +157,11 @@ void usercontrol(void) {
       if(fabs(lPow) < 5){lPow = 0;}
 
     } else {
-      rPow = Controller1.Axis3.position() - Controller1.Axis1.position();
-      lPow = Controller1.Axis3.position() + Controller1.Axis2.position();
+      rPow = RFM.velocity(percent) + (Controller1.Axis3.position() - Controller1.Axis1.position() - RFM.velocity(percent))*0.5;
+      lPow = LFM.velocity(percent) + (Controller1.Axis3.position() + Controller1.Axis1.position() - LFM.velocity(percent))*0.5;
+
+      if(fabs(rPow) < 5){rPow = 0;}
+      if(fabs(lPow) < 5){lPow = 0;}
     }    
     
 
@@ -181,14 +184,18 @@ void usercontrol(void) {
     buttonHold(indexer, Controller1.ButtonR1.pressing(), Controller1.ButtonL1.pressing(), 100, coast);
 
     //flywheel
-    buttonHoldVolt(fly1, Controller1.ButtonR2.pressing(), flyPow);
-
-    //indexer
+    if(flyOn){
+      fly1.spin(forward, flyPow, volt);
+    } else {
+      fly1.stop(coast);
+    }
 
     //endgame
-    buttonHold(endgame, Controller1.ButtonY.pressing(), Controller1.ButtonA.pressing(), 100, hold);
+    buttonHold(endgame, Controller1.ButtonY.pressing(), Controller1.ButtonA.pressing(), 100, currEndgameBrake());
 
-
+    if(Controller1.ButtonY.pressing()) {
+      endgameOn = true;
+    }
 
 
     wait(20, msec); 
