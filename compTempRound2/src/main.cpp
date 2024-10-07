@@ -59,7 +59,7 @@ void pre_auton(void) {
   leftTrack.setPosition(0, degrees);
   centTrack.setPosition(0, degrees);
 
-  //autonSwitch.pressed(switchAut);
+  autonSwitch.pressed(switchAut);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -73,22 +73,22 @@ void pre_auton(void) {
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  // switch(currentAut) {
-  //   case 0:
-  //     autonRoute0();
-  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
-  //     break;
+  switch(currentAut) {
+    case 0:
+      autonRoute0();
+      Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
+      break;
 
-  //   case 1:
-  //     autonRoute1();
-  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
-  //     break;
+    case 1:
+      autonRoute1();
+      Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
+      break;
 
-  //   case 2:
-  //     autonRoute2();
-  //     Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
-  //     break;
-  // }
+    case 2:
+      autonRoute2();
+      Brain.Screen.printAt(20, 40, "Selected Auton:", currentAut);
+      break;
+  }
   
   
   intake.setVelocity(75, percent);
